@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistencia QR - Semana de Matemáticas</title>
+    <!-- Enlace a la hoja de estilos externa -->
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="header__title">Semana de Matemáticas</h1>
+        <p class="header__subtitle">Universidad de Sonora</p>
+    </header>
+
+    <main class="main-content">
+        <section class="qr-card">
+            <p class="qr-card__instruction">Ingresa tu número de expediente para generar tu pase de asistencia.</p>
+            
+            <form class="qr-card__form" id="qrForm" onsubmit="event.preventDefault(); showQR();">
+                <input 
+                    type="number" 
+                    class="qr-card__input" 
+                    id="expedienteInput" 
+                    placeholder="Ej. 220123456" 
+                    required
+                >
+                <button type="submit" class="qr-card__button">Mostrar Código QR</button>
+            </form>
+
+            <div class="qr-card__display" id="qrDisplay">
+                <div class="qr-card__image-container">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=EjemploQR" alt="Código QR" class="qr-card__image">
+                </div>
+                <p class="qr-card__status">Muestra este código al profesor en la entrada</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

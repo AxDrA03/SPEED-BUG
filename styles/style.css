@@ -1,0 +1,160 @@
+/* Variables de color UNISON */
+:root {
+    --color-primary: #003b5c; 
+    --color-accent: #f2a900;  
+    --color-bg: #f4f7f6;
+    --color-text: #333333;
+    --color-white: #ffffff;
+}
+
+/* Reset básico y Mobile First */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header (BEM Block) */
+.header {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-bottom: 4px solid var(--color-accent);
+}
+
+.header__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.header__subtitle {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 0.25rem;
+}
+
+/* Contenedor Principal */
+.main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+/* Tarjeta QR (BEM Block) */
+.qr-card {
+    background-color: var(--color-white);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+.qr-card__instruction {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-text);
+}
+
+.qr-card__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.qr-card__input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-align: center;
+    transition: border-color 0.3s;
+}
+/* Ocultar flechas en Chrome, Safari, Edge y Opera */
+.qr-card__input::-webkit-outer-spin-button,
+.qr-card__input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+/* Ocultar flechas en Firefox */
+.qr-card__input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+.qr-card__input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+.qr-card__button {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.qr-card__button:hover {
+    background-color: #d99700;
+}
+
+/* Contenedor del código QR */
+.qr-card__display {
+    margin-top: 2rem;
+    display: none; 
+    flex-direction: column;
+    align-items: center;
+}
+
+.qr-card__display--active {
+    display: flex;
+}
+
+.qr-card__image-container {
+    background-color: var(--color-white);
+    padding: 1rem;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qr-card__image {
+    max-width: 100%;
+    height: auto;
+}
+
+.qr-card__status {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+@media (min-width: 768px) {
+    .header__title { font-size: 1.5rem; }
+    .qr-card { padding: 3rem 2.5rem; }
+}
