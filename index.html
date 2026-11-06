@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mi asistencia</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+  <section id="login" class="card hidden">
+    <h1>Mi asistencia</h1>
+    <p class="sub">Entra con tu expediente y el NIP que te dio tu administrador.</p>
+    <form id="loginForm">
+      <input id="exp" placeholder="Expediente" autocomplete="username" autocapitalize="characters" required>
+      <input id="nip" type="password" inputmode="numeric" placeholder="NIP" autocomplete="current-password" required>
+      <div class="row"><button class="primary">Entrar</button></div>
+    </form>
+    <div class="msg err" id="lmsg"></div>
+  </section>
+
+  <div id="panel" class="hidden">
+    <div class="card">
+      <h1 id="who"></h1>
+      <div class="big" id="expLabel"></div>
+      <div class="row noprint">
+        <button class="primary" id="qrBtn">Mostrar mi QR</button>
+        <button id="printBtn">Imprimir mi expediente</button>
+        <button id="logout">Salir</button>
+      </div>
+    </div>
+    <div class="card qrbox" id="qrBox"><div class="label">Mi código QR</div><img id="qrImg" alt="Mi código QR"></div>
+      <div class="label">Mis cursos y faltas</div>
+      <table id="tbl"></table>
+      <div class="msg" id="empty"></div>
+    </div>
+  </div>
+</main>
+<script src="usuario.js"></script>
+</body>
+</html>
