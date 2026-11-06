@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Administración · Asistencia</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+  <section id="auth" class="card hidden">
+    <h1>Administradores</h1>
+    <form id="loginForm">
+      <p class="sub">Entra con tu correo y tu key.</p>
+      <input id="lEmail" type="email" placeholder="Correo" autocomplete="username" required>
+      <input id="lKey" type="password" placeholder="Key" autocomplete="current-password" required>
+      <div class="row"><button class="primary">Entrar</button></div>
+      <button type="button" class="link" id="toSignup">Crear cuenta de administrador</button>
+    </form>
+    <form id="signupForm" class="hidden">
+      <p class="sub">Registra tu correo, elige tu key (mínimo 6 caracteres) y escribe el código de registro que muestra el servidor al iniciar.</p>
+      <input id="sEmail" type="email" placeholder="Tu correo" autocomplete="username" required>
+      <input id="sKey" type="password" placeholder="Elige tu key" autocomplete="new-password" required>
+      <input id="sKey2" type="password" placeholder="Repite tu key" autocomplete="new-password" required>
+      <input id="sCode" placeholder="Código de registro" autocomplete="off" required>
+      <div class="row"><button class="primary">Crear cuenta</button></div>
+      <button type="button" class="link" id="toLogin">Ya tengo cuenta</button>
+    </form>
+    <div class="msg err" id="amsg"></div>
+  </section>
+
+  <div id="app" class="hidden">
+    <header><h1>Asistencia</h1><span><small id="who"></small> <button id="logout">Salir</button></span></header>
+    <nav class="tabs" id="tabs">
+      <button data-tab="asistencia" class="on">Asistencia</button>
+      <button data-tab="cursos">Cursos</button>
+      <button data-tab="alumnos">Alumnos</button>
+      <button data-tab="cuenta">Mi cuenta</button>
+    </nav>
+    <div class="msg err" id="gmsg"></div>
+
+    <section id="t-asistencia">
+      <div class="card">
+        <div class="label">Curso del que tomo asistencia</div>
+        <select id="attCourse"></select>
+        <div class="msg" id="sessInfo"></div>
+        <div class="row"><button class="primary" id="startSession">Iniciar asistencia de hoy</button></div>
+      </div>
+      <div id="scanCard" class="hidden">
+        <div class="card">
+          <div class="viewer" id="viewer">
+            <video id="video" playsinline muted></video><div class="frame"></div>
+            <div class="ph">La cámara está apagada.<br>Pulsa “Iniciar cámara”.</div>
+          </div>
+          <div class="row"><button class="primary" id="toggle">Iniciar cámara</button></div>
+          <div class="msg" id="msg"></div>
+        </div>
+        <div class="card">
+          <div class="label">¿No trae su QR? Captura su expediente</div>
+          <form id="manualForm"><input id="expIn" placeholder="Expediente" autocapitalize="characters" autocomplete="off">
+            <div class="row"><button>Registrar asistencia</button></div></form>
+          <div class="banner hidden" id="banner"></div>
+        </div>
+        <div class="card"><div class="label" id="count">Asistentes de hoy</div><ul class="list" id="attList"></ul></div>
+      </div>
+    </section>
+
+    <section id="t-cursos" class="hidden">
+      <div class="card"><input id="courseName" placeholder="Nombre del curso"><div class="row"><button class="primary" id="addCourse">Agregar curso</button></div></div>
+      <div class="card"><ul class="list" id="courseList"></ul></div>
+    </section>
+
+    <section id="t-alumnos" class="hidden">
+      <div class="card">
+        <input id="stExp" placeholder="Expediente" autocapitalize="characters" autocomplete="off">
+        <input id="stName" placeholder="Nombre completo" autocomplete="off">
+        <div class="row"><button class="primary" id="addStudent">Dar de alta alumno</button></div>
+        <div class="banner ok hidden" id="nipBox"></div>
+      </div>
+      <div class="card"><ul class="list" id="studentList"></ul></div>
+    </section>
+
+    <section id="t-cuenta" class="hidden">
+      <div class="card">
+        <div class="label">Cambiar mi key</div>
+        <form id="keyForm">
+          <input id="kOld" type="password" placeholder="Key actual" autocomplete="current-password" required>
+          <input id="kNew" type="password" placeholder="Key nueva (mínimo 6)" autocomplete="new-password" required>
+          <input id="kNew2" type="password" placeholder="Repite la key nueva" autocomplete="new-password" required>
+          <div class="row"><button class="primary">Cambiar key</button></div>
+        </form>
+        <div class="msg" id="kmsg"></div>
+      </div>
+    </section>
+  </div>
+</main>
+<script src="admin.js"></script>
+</body>
+</html>
