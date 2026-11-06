@@ -5,6 +5,7 @@
     --color-bg: #f4f7f6;
     --color-text: #333333;
     --color-white: #ffffff;
+    --color-danger: #d9381e;
 }
 
 /* Reset básico y Mobile First */
@@ -18,9 +19,14 @@ body {
     font-family: system-ui, -apple-system, sans-serif;
     background-color: var(--color-bg);
     color: var(--color-text);
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: auto 1fr; /* Header arriba, contenido ocupa el resto */
     min-height: 100vh;
+}
+
+/* Utilería vital para ocultar las vistas de la SPA */
+.hidden {
+    display: none !important;
 }
 
 /* Header (BEM Block) */
@@ -43,13 +49,20 @@ body {
     margin-top: 0.25rem;
 }
 
-/* Contenedor Principal */
+/* Contenedor Principal con Grid */
 .main-content {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    place-items: center; /* Centra el contenido horizontal y verticalmente */
     padding: 2rem 1rem;
+    width: 100%;
+}
+
+/* Layout del panel con Grid */
+.panel-grid {
+    display: grid;
+    gap: 1.5rem; /* Separación perfecta entre las tarjetas */
+    width: 100%;
+    max-width: 400px;
 }
 
 /* Tarjeta QR (BEM Block) */
@@ -63,6 +76,11 @@ body {
     text-align: center;
 }
 
+.qr-card__title {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
 .qr-card__instruction {
     font-size: 1rem;
     margin-bottom: 1.5rem;
@@ -70,8 +88,7 @@ body {
 }
 
 .qr-card__form {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: 1rem;
 }
 
@@ -84,22 +101,20 @@ body {
     text-align: center;
     transition: border-color 0.3s;
 }
-/* Ocultar flechas en Chrome, Safari, Edge y Opera */
-.qr-card__input::-webkit-outer-spin-button,
-.qr-card__input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    appearance: none;
-    margin: 0;
-}
-/* Ocultar flechas en Firefox */
-.qr-card__input[type="number"] {
-    -moz-appearance: textfield;
-    appearance: textfield;
-}
 
 .qr-card__input:focus {
     outline: none;
     border-color: var(--color-primary);
+}
+
+/* Quitar flechas a input numérico */
+.qr-card__input::-webkit-outer-spin-button,
+.qr-card__input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.qr-card__input[type="number"] {
+    -moz-appearance: textfield;
 }
 
 .qr-card__button {
@@ -118,16 +133,14 @@ body {
     background-color: #d99700;
 }
 
-/* Contenedor del código QR */
-.qr-card__display {
-    margin-top: 2rem;
-    display: none; 
-    flex-direction: column;
-    align-items: center;
+.qr-card__button--secondary {
+    background-color: #e0e0e0;
+    color: #333;
 }
 
-.qr-card__display--active {
-    display: flex;
+.qr-card__button--danger {
+    background-color: var(--color-danger);
+    color: var(--color-white);
 }
 
 .qr-card__image-container {
@@ -137,9 +150,9 @@ body {
     border-radius: 8px;
     width: 250px;
     height: 250px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
 }
 
 .qr-card__image {
@@ -150,8 +163,15 @@ body {
 .qr-card__status {
     margin-top: 1rem;
     font-size: 0.9rem;
-    color: var(--color-primary);
     font-weight: 600;
+}
+
+/* Tabla base */
+.qr-card__table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    margin-top: 1rem;
 }
 
 @media (min-width: 768px) {

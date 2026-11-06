@@ -3,10 +3,45 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mi asistencia</title>
+<title>Mi asistencia - Semana de Matemáticas</title>
 <link rel="stylesheet" href="styles.css">
+<style>
+  /* Flexbox en el body para que el footer siempre se quede hasta abajo */
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+  }
+  main {
+    flex: 1; /* Hace que el main ocupe todo el espacio disponible */
+  }
+  .app-header {
+    background-color: #003b5c; /* Azul UNISON */
+    color: white;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border-bottom: 4px solid #f2a900; /* Amarillo UNISON */
+  }
+  .app-header h2 { margin: 0; font-size: 1.5rem; }
+  .app-header p { margin: 5px 0 0 0; opacity: 0.9; }
+  .app-footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.85rem;
+    color: #666;
+    background-color: #f4f7f6;
+  }
+</style>
 </head>
 <body>
+
+<!-- ENCABEZADO -->
+<header class="app-header">
+  <h2>Semana de Matemáticas</h2>
+  <p>Universidad de Sonora</p>
+</header>
+
 <main>
   <section id="login" class="card hidden">
     <h1>Mi asistencia</h1>
@@ -36,6 +71,12 @@
     </div>
   </div>
 </main>
+
+<!-- PIE DE PÁGINA -->
+<footer class="app-footer">
+  <p>&copy; 2026 SPEED-BUG. Todos los derechos reservados.</p>
+</footer>
+
 <script src="usuario.js"></script>
 </body>
 </html>
