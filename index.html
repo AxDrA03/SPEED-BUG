@@ -1,41 +1,122 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mi asistencia</title>
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<main>
-  <section id="login" class="card hidden">
-    <h1>Mi asistencia</h1>
-    <p class="sub">Entra con tu expediente y el NIP que te dio tu administrador.</p>
-    <form id="loginForm">
-      <input id="exp" placeholder="Expediente" autocomplete="username" autocapitalize="characters" required>
-      <input id="nip" type="password" inputmode="numeric" placeholder="NIP" autocomplete="current-password" required>
-      <div class="row"><button class="primary">Entrar</button></div>
-    </form>
-    <div class="msg err" id="lmsg"></div>
-  </section>
 
-  <div id="panel" class="hidden">
-    <div class="card">
-      <h1 id="who"></h1>
-      <div class="big" id="expLabel"></div>
-      <div class="row noprint">
-        <button class="primary" id="qrBtn">Mostrar mi QR</button>
-        <button id="printBtn">Imprimir mi expediente</button>
-        <button id="logout">Salir</button>
-      </div>
-    </div>
-    <div class="card qrbox" id="qrBox"><div class="label">Mi código QR</div><img id="qrImg" alt="Mi código QR"></div>
-      <div class="label">Mis cursos y faltas</div>
-      <table id="tbl"></table>
-      <div class="msg" id="empty"></div>
-    </div>
-  </div>
+<html lang="es"><head><meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>Concurso FM</title>
+
+<link rel="stylesheet" href="styles/styles.css"></head><body><main>
+
+
+
+<section id="auth">
+
+ <div class="top"><h1>Concurso FM</h1></div>
+
+ <div class="tabs"><button class="on" data-a="in">Entrar</button><button data-a="reg">Crear cuenta</button><button data-a="adm">Alta de administrador</button></div>
+
+ <div class="card" id="a-in"><h2>Iniciar sesión</h2>
+
+  <label>Correo electrónico</label><input id="l-mail" type="email" autocomplete="username">
+
+  <label>Contraseña</label><input id="l-pass" type="password" autocomplete="current-password">
+
+  <button id="b-in">Entrar</button><div class="mu">Se detecta automáticamente si tu cuenta es de usuario o de administrador.</div><div class="msg" id="m-in"></div></div>
+
+ <div class="card hide" id="a-reg"><h2>Crear cuenta de usuario</h2>
+
+  <label>Nombre</label><input id="r-nom"><label>Apellido paterno</label><input id="r-ap"><label>Apellido materno</label><input id="r-am">
+
+  <label>Correo electrónico</label><input id="r-mail" type="email"><label>Contraseña (mín. 6)</label><input id="r-pass" type="password" autocomplete="new-password">
+
+  <button id="b-reg">Crear cuenta</button><div class="msg" id="m-reg"></div></div>
+
+ <div class="card hide" id="a-adm"><h2>Alta de administrador</h2>
+
+  <label>Nombre</label><input id="d-nom"><label>Correo electrónico</label><input id="d-mail" type="email">
+
+  <label>Contraseña (mín. 6)</label><input id="d-pass" type="password" autocomplete="new-password">
+
+  <label>Key de administrador</label><input id="d-key" placeholder="FM-ADMIN-XXXX-XXXX-XXXX">
+
+  <button id="b-adm">Dar de alta</button><div class="msg" id="m-adm"></div></div>
+
+ <div class="msg er" id="m-db"></div>
+
+</section>
+
+
+
+<section id="user" class="hide">
+
+ <div class="top"><div><h1 id="u-name"></h1><span class="mu">Usuario</span></div><button class="s" data-out>Salir</button></div>
+
+ <div class="card"><h2>Mi folio</h2><div class="folio" id="u-folio"></div>
+
+  <p><button id="b-qr">Mostrar QR</button></p><div id="qrbox" class="hide"><div id="qr"></div><div class="mu">Muestra este código al administrador para registrar tu asistencia.</div></div></div>
+
+ <div class="card"><h2>Cursos</h2><div class="mu">Inscríbete solo en los que desees.</div><div id="u-cursos"></div></div>
+
+ <div class="card"><h2>Cambiar contraseña</h2>
+
+  <label>Contraseña actual</label><input id="p-old" type="password" autocomplete="current-password">
+
+  <label>Nueva contraseña (mín. 6)</label><input id="p-new" type="password" autocomplete="new-password">
+
+  <button id="b-pw">Cambiar</button><div class="msg" id="m-pw"></div></div>
+
+</section>
+
+
+
+<section id="admin" class="hide">
+
+ <div class="top"><div><h1 id="d-name"></h1><span class="mu">Administrador</span></div><button class="s" data-out>Salir</button></div>
+
+ <div class="tabs" id="atabs"><button class="on" data-t="cur">Cursos</button><button data-t="ins">Inscritos</button><button data-t="asi">Asistencia</button></div>
+
+ <div id="t-cur">
+
+  <div class="card"><h2>Nuevo curso</h2><label>Nombre</label><input id="c-nom"><label>Descripción</label><input id="c-des">
+
+   <label>Días de impartición</label><div style="display:flex;gap:8px"><input id="c-dia" type="date"><button class="s" id="b-dia" type="button" style="height:42px;margin-top:4px">Agregar día</button></div>
+
+   <div class="mu" id="c-dias">Sin días agregados</div><button id="b-cur" style="margin-top:10px">Crear curso</button><div class="msg" id="m-cur"></div></div>
+
+  <div class="card"><h2>Cursos existentes</h2><div id="l-cur"></div></div>
+
+ </div>
+
+ <div id="t-ins" class="hide"><div class="card"><h2>Usuarios inscritos por curso</h2><div id="l-ins"></div></div></div>
+
+ <div id="t-asi" class="hide">
+
+  <div class="card"><h2>Registrar asistencia</h2>
+
+   <label>Curso</label><select id="s-cur"></select><label>Día</label><select id="s-dia"></select>
+
+   <div style="margin:6px 0"><button id="b-cam">Leer QR con cámara</button> <button class="s hide" id="b-stop">Detener cámara</button></div>
+
+   <video id="vid" class="hide" playsinline muted></video><canvas id="cv" class="hide"></canvas>
+
+   <label>O buscar por folio o nombre</label><div style="display:flex;gap:8px"><input id="s-q" placeholder="FM-ABC123 o nombre"><button id="b-q" style="height:42px;margin-top:4px">Dar asistencia</button></div>
+
+   <div id="s-opts"></div><div class="msg" id="m-asi"></div></div>
+
+  <div class="card"><h2>Tabla de asistencia</h2><div class="wrap" id="l-asi"></div></div>
+
+ </div>
+
+</section>
+
 </main>
-<script src="usuario.js"></script>
-</body>
-</html>
+
+
+
+<script src="src/qrcode.min.js"></script>
+
+<script src="src/jsQr.min.js"></script>
+
+<script src="src/app.js" defer></script>
+</body></html>
